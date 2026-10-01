@@ -1,0 +1,73 @@
+# Model & Feature Configuration for FraudGuard
+
+features:
+  allowlist:
+    - type
+    - amount
+  derived:
+    - log1p_amount
+    - sin_hour
+    - cos_hour
+  categorical:
+    - type
+  numeric:
+    - amount
+    - log1p_amount
+    - sin_hour
+    - cos_hour
+  target: isFraud
+  metadata:
+    - transaction_id
+    - step
+  # Strictly forbidden columns to guard against data leakage and simulator artifacts
+  forbidden:
+    - oldbalanceOrg
+    - newbalanceOrig
+    - oldbalanceDest
+    - newbalanceDest
+    - isFlaggedFraud
+    - nameOrig
+    - nameDest
+    - isFraud
+
+categorical_categories:
+  type:
+    - CASH_IN
+    - CASH_OUT
+    - DEBIT
+    - PAYMENT
+    - TRANSFER
+
+splits:
+  train_ratio: 0.60
+  tune_ratio: 0.15
+  replay_ratio: 0.15
+  audit_ratio: 0.10
+  step_column: step
+
+models:
+  baseline:
+    type: logistic_regression
+    params:
+      class_weight: balanced
+      max_iter: 1000
+      random_state: 42
+      solver: lbfgs
+  xgboost:
+    type: xgboost
+    params:
+      n_estimators: 150
+      max_depth: 5
+      learning_rate: 0.08
+      subsample: 0.8
+      colsample_bytree: 0.8
+      scale_pos_weight: 10.0
+      eval_metric: logloss
+      random_state: 42
+      n_jobs: -1
+
+threshold:
+  policy: max_fpr_budget
+  max_fpr: 0.01
+  min_precision: 0.10
+  default_threshold: 0.50

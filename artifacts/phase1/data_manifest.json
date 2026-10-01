@@ -1,0 +1,46 @@
+{
+  "dataset_name": "PaySim_temporal",
+  "source_path": null,
+  "source_checksum": null,
+  "total_rows": 50000,
+  "created_at": "2026-10-01T17:53:11.374152+00:00",
+  "metadata": {},
+  "splits": {
+    "train": {
+      "name": "train",
+      "start_step": 1,
+      "end_step": 72,
+      "total_rows": 29972,
+      "fraud_count": 135,
+      "fraud_prevalence": 0.004504,
+      "checksum": "5df4e60cfb5488245ccf574b3e4aa1eb5268615b715a97a2f9f6f36bd750b36a"
+    },
+    "tune": {
+      "name": "tune",
+      "start_step": 73,
+      "end_step": 90,
+      "total_rows": 7569,
+      "fraud_count": 37,
+      "fraud_prevalence": 0.004888,
+      "checksum": "0bc87d6faa4f6b917e410cdff4f0d61e4c6c6baea7d055eed1d977ff6d948160"
+    },
+    "replay": {
+      "name": "replay",
+      "start_step": 91,
+      "end_step": 108,
+      "total_rows": 7448,
+      "fraud_count": 53,
+      "fraud_prevalence": 0.007116,
+      "checksum": "7dd2ac2c6acd72454ce9f7b702d630fa2faa1673b2529a4627dc8467c134ed01"
+    },
+    "audit": {
+      "name": "audit",
+      "start_step": 109,
+      "end_step": 120,
+      "total_rows": 5011,
+      "fraud_count": 25,
+      "fraud_prevalence": 0.004989,
+      "checksum": "65c59b2d9e195a7834bab639bc1650e0953078aa8f88bee6a30a55d060f0b848"
+    }
+  }
+}

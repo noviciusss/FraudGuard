@@ -1,0 +1,26 @@
+# Candidate Promotion and Quality Gate Configuration
+
+quality_gate:
+  # Candidate must satisfy precision floor and false-positive budget
+  max_fpr: 0.01
+  min_precision: 0.15
+  # Candidate recall comparison against champion
+  min_recall_improvement: 0.00  # Non-inferiority or positive gain
+  # Candidate average precision relative tolerance
+  max_ap_drop: 0.02
+  # Sample size requirements on joint unseen comparison window
+  min_comparison_samples: 100
+  min_comparison_positives: 5
+
+registry:
+  model_name: "fraudguard-classifier"
+  aliases:
+    champion: "champion"
+    candidate: "candidate"
+    previous: "previous"
+
+deployment:
+  health_endpoint: "/health/ready"
+  smoke_test_batch_size: 10
+  max_latency_p95_ms: 100
+  rollback_on_failure: true

@@ -1,0 +1,37 @@
+# Monitoring Configuration for FraudGuard
+
+reference:
+  version: "v1_dev_train"
+  description: "Frozen reference distribution from development training partition"
+
+drift:
+  numerical_method: "psi"
+  categorical_method: "jensen_shannon"
+  thresholds:
+    warning: 0.10
+    alert: 0.20
+  features:
+    - amount
+    - log1p_amount
+    - type
+    - fraud_score
+
+windows:
+  min_samples: 100
+  window_steps: 24  # 24 simulation steps represents ~1 simulated day
+
+performance:
+  min_labeled_samples: 50
+  min_positive_labels: 3
+  metrics:
+    - average_precision
+    - precision
+    - recall
+    - f1
+    - fpr
+    - roc_auc
+
+trigger:
+  persistence_windows: 2
+  cooldown_steps: 48
+  max_retrain_attempts_per_run: 3
