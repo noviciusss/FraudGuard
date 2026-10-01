@@ -1,10 +1,10 @@
 [project]
 name = "fraudguard"
 version = "0.1.0"
-description = "Add your description here"
+description = "FraudGuard: Drift-monitored fraud detection and MLOps lifecycle pipeline"
 readme = "README.md"
 authors = [
-    { name = "samarthamber", email = "samarth@amberflux.com" }
+    { name = "noviciusss", email = "samarthsin2006@gmail.com" }
 ]
 requires-python = ">=3.12"
 dependencies = [
